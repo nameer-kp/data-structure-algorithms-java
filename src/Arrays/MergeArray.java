@@ -16,6 +16,7 @@ public class MergeArray {
         int i=0;
         int j=0;
         while (i<=first.length-1||j<=second.length-1){
+            System.out.println(first[i]+" "+second[j]);
             if(first[i]<second[j]){
                 mergedArray.add(first[i]);
                 i++;
