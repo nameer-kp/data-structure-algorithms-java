@@ -161,7 +161,7 @@ class ArrayListClass {
         v.print();
         System.out.println(
                 "ArrayList elements:Deletion of element from index 2 ");
-        v.delete(2);
+        v.delete(1);
         v.print();
     }
 }
