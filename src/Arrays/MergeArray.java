@@ -20,17 +20,12 @@ public class MergeArray {
                 mergedArray.add(first[i]);
                 i++;
             }
-            else if (first[i]>second[j]){
+            else{
                 mergedArray.add(second[j]);
-                j++;
-            }
-            else if(first[i]==second[j]){
-                mergedArray.add(first[i]);
-                mergedArray.add(second[j]);
-                i++;
                 j++;
             }
         }
+        //we check which array is completed then add the elements of other array into the list
         if (i> first.length-1){
             for(int k=j;k< second.length-1;k++){
                 mergedArray.add(second[k]);
@@ -45,6 +40,6 @@ public class MergeArray {
         System.out.println(mergedArray);
     }
     public static void main(String[] args) {
-        mergeArray(new int[]{0,3,4,31,54},new int[]{2,4,30,45,47,50,54,58,60});
+        mergeArray(new int[]{0,3,4,4,4,31,54},new int[]{2,4,4,30,45,47,50,54,58,60});
     }
 }
