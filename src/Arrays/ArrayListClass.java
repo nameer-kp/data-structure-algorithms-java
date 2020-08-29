@@ -90,9 +90,9 @@ class ArrayListClass {
     }
     void delete(int index){
         for(int i=index;i<current;i++){
-            arr[i]=arr[i++];
+            arr[i]=arr[i+1];
         }
-        //pop();
+        pop();
     }
 
     // function to get capacity
@@ -105,7 +105,7 @@ class ArrayListClass {
     // function to print ArrayList elements
     void print()
     {
-        for (int i = 0; i < current; i++) {
+        for (int i = 0; i <current; i++) {
             System.out.print(arr[i] + " ");
         }
         System.out.println();
