@@ -70,6 +70,25 @@ public class LinkedListImplementation {
         currentNode.setNext(newNode);
         length++;
     }
+    public void remove(int index){
+        //for index zero
+        if (index==0){
+            head=head.getNext();
+            return;
+        }
+        if (index>length||index<0){
+            System.out.println("sorry we cant remove..check your index");
+            return;
+        }
+        Node currentNode = head;
+        for (int i=1;i<index;i++){
+            currentNode=currentNode.getNext();
+        }
+        //setting currentNodes next as the next of the node to be removed
+        currentNode.setNext(currentNode.getNext().getNext());
+        length--;
+    }
+
 
 
 
@@ -80,6 +99,7 @@ public class LinkedListImplementation {
         linkedList.append(4);
         System.out.println(linkedList.getLength());
         linkedList.insert(5,99);
+        linkedList.remove(5);
         linkedList.printList();
     }
 }
