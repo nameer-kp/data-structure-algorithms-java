@@ -61,10 +61,7 @@ public class LinkedListImplementation {
         }
         Node newNode=new Node(value);
         //creating node reference for currentNode
-        Node currentNode =head;
-        for (int i =1;i<index;i++){
-          currentNode=currentNode.getNext();
-        }
+        Node currentNode = traverseToIndex(index);
         //inserting new node by changing setNext values of currentNode.next and newNode.next
         newNode.setNext(currentNode.getNext());
         currentNode.setNext(newNode);
@@ -76,17 +73,23 @@ public class LinkedListImplementation {
             head=head.getNext();
             return;
         }
-        if (index>length||index<0){
+        if (index>=length||index<0){
             System.out.println("sorry we cant remove..check your index");
             return;
         }
+        Node currentNode = traverseToIndex(index);
+        //setting currentNodes next as the next of the node to be removed
+        currentNode.setNext(currentNode.getNext().getNext());
+        length--;
+
+    }
+    public Node traverseToIndex(int index){
+        //this method is used to get the node before index
         Node currentNode = head;
         for (int i=1;i<index;i++){
             currentNode=currentNode.getNext();
         }
-        //setting currentNodes next as the next of the node to be removed
-        currentNode.setNext(currentNode.getNext().getNext());
-        length--;
+        return currentNode;
     }
 
 
