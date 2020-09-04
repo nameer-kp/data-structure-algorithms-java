@@ -13,10 +13,10 @@ public class LinkedListImplementation {
     }
 
     public LinkedListImplementation(int value){
-        head= new Node();
-        //setting head node value
-        head.setValue(value);
-        //setting next of head node
+        head= new Node(value);//setting head node value 
+
+        // setting next of head node
+
         head.setNext(null);
         //setting tail as head since it is the first node of the linked list
         tail =head;
@@ -24,17 +24,14 @@ public class LinkedListImplementation {
 
     }
     public void append(int value){
-        tail.setNext(new Node());
-        tail.setNextValue(value);
-        tail.setNextNext(null);
-        tail=tail.getNext();
+        Node newNode=new Node(value);
+        newNode.setNext(null);
+        tail.setNext(newNode);
+        tail=newNode;
     }
     public void prepend(int value){
-        //creating a new node;
-        Node newNode=new Node();
-        //setting its value
-        newNode.setValue(value);
-        //making the new node's next as head..this new node will point present head
+        //creating a new node;   //setting its value
+        Node newNode=new Node(value);
         newNode.setNext(head);
         //setting head as new node
         head=newNode;

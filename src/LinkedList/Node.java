@@ -3,6 +3,9 @@ package LinkedList;
 public class Node {
     private int value;
     private Node next;
+    public Node(int value){
+        this.value=value;
+    }
 
     public int getValue() {
         return value;
@@ -18,12 +21,6 @@ public class Node {
 
     public void setNext(Node next) {
         this.next = next;
-    }
-    public void setNextValue(int value){
-        this.next.setValue(value);
-    }
-    public void setNextNext(Node node){
-        this.next.setNext(node);
     }
 
     @Override
