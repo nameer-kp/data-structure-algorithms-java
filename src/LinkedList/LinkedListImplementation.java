@@ -29,11 +29,22 @@ public class LinkedListImplementation {
         tail.setNextNext(null);
         tail=tail.getNext();
     }
+    public void prepend(int value){
+        //creating a new node;
+        Node newNode=new Node();
+        //setting its value
+        newNode.setValue(value);
+        //making the new node's next as head..this new node will point present head
+        newNode.setNext(head);
+        //setting head as new node
+        head=newNode;
+    }
 
     public static void main(String[] args) {
         LinkedListImplementation linkedList = new LinkedListImplementation(5);
         linkedList.append(10);
         linkedList.append(16);
+        linkedList.prepend(1);
         System.out.println(linkedList);
     }
 }
