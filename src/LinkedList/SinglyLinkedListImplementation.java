@@ -91,9 +91,38 @@ public class SinglyLinkedListImplementation {
         }
         return currentSinglyNode;
     }
+//    public SinglyNode elementBeforetail(){
+//        SinglyNode currentSinglyNode=head;
+//        while((currentSinglyNode.getNext().getNext())!=null){
+//            currentSinglyNode=currentSinglyNode.getNext();
+//        }
+//        return currentSinglyNode;
+//    }
 
 
+    public SinglyLinkedListImplementation reverse(){
 
+        //assigning current value as head
+        SinglyNode currentSinglyNode=head;
+        //setting current value as first node
+        SinglyLinkedListImplementation reversedLinkedList= new SinglyLinkedListImplementation(currentSinglyNode.getValue());
+        //loop untill last node
+        while((currentSinglyNode.getNext())!=null){
+            currentSinglyNode=currentSinglyNode.getNext();
+            //by using prepend we can move older nodes to right
+            reversedLinkedList.prepend(currentSinglyNode.getValue());
+        }
+       return reversedLinkedList;
+    }
+
+    @Override
+    public String toString() {
+        return "SinglyLinkedListImplementation{" +
+                "head=" + head +
+                ", tail=" + tail +
+                ", length=" + length +
+                '}';
+    }
 
     public static void main(String[] args) {
         SinglyLinkedListImplementation linkedList = new SinglyLinkedListImplementation(5);
@@ -102,7 +131,9 @@ public class SinglyLinkedListImplementation {
         linkedList.append(4);
         System.out.println(linkedList.getLength());
         linkedList.insert(5,99);
-        linkedList.remove(5);
         linkedList.printList();
+        SinglyLinkedListImplementation reverse=linkedList.reverse();
+        reverse.printList();
+        System.out.println(reverse);
     }
 }
