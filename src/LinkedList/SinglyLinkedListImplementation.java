@@ -2,17 +2,17 @@ package LinkedList;
 
 import java.util.ArrayList;
 
-public class LinkedListImplementation {
-    private Node head;
-    private Node tail;
+public class SinglyLinkedListImplementation {
+    private SinglyNode head;
+    private SinglyNode tail;
     private int length;
 
     public int getLength() {
         return length;
     }
 
-    public LinkedListImplementation(int value){
-        head= new Node(value);//setting head node value
+    public SinglyLinkedListImplementation(int value){
+        head= new SinglyNode(value);//setting head node value
 
         // setting next of head node
 
@@ -24,27 +24,27 @@ public class LinkedListImplementation {
 
     }
     public void append(int value){
-        Node newNode=new Node(value);
-        newNode.setNext(null);
-        tail.setNext(newNode);
-        tail=newNode;
+        SinglyNode newSinglyNode =new SinglyNode(value);
+        newSinglyNode.setNext(null);
+        tail.setNext(newSinglyNode);
+        tail= newSinglyNode;
         length++;
     }
     public void prepend(int value){
         //creating a new node;   //setting its value
-        Node newNode=new Node(value);
-        newNode.setNext(head);
+        SinglyNode newSinglyNode =new SinglyNode(value);
+        newSinglyNode.setNext(head);
         //setting head as new node
-        head=newNode;
+        head= newSinglyNode;
         length++;
     }
     //this method is for implementing simplified print
     public void printList(){
         ArrayList<Integer> list=new ArrayList<>();
-        Node currentNode = head;
-        while (currentNode!=null){
-            list.add(currentNode.getValue());
-            currentNode=currentNode.getNext();
+        SinglyNode currentSinglyNode = head;
+        while (currentSinglyNode !=null){
+            list.add(currentSinglyNode.getValue());
+            currentSinglyNode = currentSinglyNode.getNext();
         }
         System.out.println(list);
     }
@@ -59,12 +59,12 @@ public class LinkedListImplementation {
             System.out.println("you cant add to the given index..");
             return;
         }
-        Node newNode=new Node(value);
+        SinglyNode newSinglyNode =new SinglyNode(value);
         //creating node reference for currentNode
-        Node currentNode = traverseToIndex(index);
+        SinglyNode currentSinglyNode = traverseToIndex(index);
         //inserting new node by changing setNext values of currentNode.next and newNode.next
-        newNode.setNext(currentNode.getNext());
-        currentNode.setNext(newNode);
+        newSinglyNode.setNext(currentSinglyNode.getNext());
+        currentSinglyNode.setNext(newSinglyNode);
         length++;
     }
     public void remove(int index){
@@ -77,26 +77,26 @@ public class LinkedListImplementation {
             System.out.println("sorry we cant remove..check your index");
             return;
         }
-        Node currentNode = traverseToIndex(index);
+        SinglyNode currentSinglyNode = traverseToIndex(index);
         //setting currentNodes next as the next of the node to be removed
-        currentNode.setNext(currentNode.getNext().getNext());
+        currentSinglyNode.setNext(currentSinglyNode.getNext().getNext());
         length--;
 
     }
-    public Node traverseToIndex(int index){
+    public SinglyNode traverseToIndex(int index){
         //this method is used to get the node before index
-        Node currentNode = head;
+        SinglyNode currentSinglyNode = head;
         for (int i=1;i<index;i++){
-            currentNode=currentNode.getNext();
+            currentSinglyNode = currentSinglyNode.getNext();
         }
-        return currentNode;
+        return currentSinglyNode;
     }
 
 
 
 
     public static void main(String[] args) {
-        LinkedListImplementation linkedList = new LinkedListImplementation(5);
+        SinglyLinkedListImplementation linkedList = new SinglyLinkedListImplementation(5);
         linkedList.append(10);
         linkedList.append(16);
         linkedList.append(4);
