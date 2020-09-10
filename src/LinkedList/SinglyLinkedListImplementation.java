@@ -114,6 +114,21 @@ public class SinglyLinkedListImplementation {
         }
        return reversedLinkedList;
     }
+    public void reverse2(){
+        SinglyNode first=head;
+        SinglyNode second=head.getNext();
+        SinglyNode temp;
+        tail=first;
+        while (second!=null){
+            temp =second.getNext();
+            second.setNext(first);
+            first=second;
+            second=temp;
+        }
+        head.setNext(null);
+        head=first;
+
+    }
 
     @Override
     public String toString() {
@@ -130,10 +145,9 @@ public class SinglyLinkedListImplementation {
         linkedList.append(16);
         linkedList.append(4);
         System.out.println(linkedList.getLength());
-        linkedList.insert(5,99);
+        linkedList.insert(2,99);
         linkedList.printList();
-        SinglyLinkedListImplementation reverse=linkedList.reverse();
-        reverse.printList();
-        System.out.println(reverse);
+        linkedList.reverse2();
+        linkedList.printList();
     }
 }
