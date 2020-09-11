@@ -42,13 +42,13 @@ public class Queue {
 
     public static void main(String[] args) {
         Queue queue =new Queue("1000");
-        queue.push("2000");
-        queue.push("3000");
-        queue.push("4000");
+        queue.enqueue("2000");
+        queue.enqueue("3000");
+        queue.enqueue("4000");
         queue.peek();
-        queue.pop();
-        queue.pop();
-        queue.pop();
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
         queue.peek();
         System.out.println(queue.isEmpty());
     }

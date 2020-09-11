@@ -5,6 +5,9 @@ import java.util.ArrayList;
 public class ArrayStack {
     private ArrayList<String> stack;
     int length;
+    public ArrayStack(){
+        stack=new ArrayList<>();
+    }
     public ArrayStack(String value){
         stack=new ArrayList<>();
         stack.add(value);
@@ -15,16 +18,18 @@ public class ArrayStack {
         length++;
 
     }
-    public void pop(){
+    public String pop(){
         // checking for input
         if(length<1){
             System.out.println("stack under Flow");
-            return;
+            return null;
         }
         //length-1 holds index for last entry ie,top
-        System.out.println("popping element is :"+stack.get(length-1));
+        String current =stack.get(length-1);
+        System.out.println("popping element is :"+current);
         stack.remove(length-1);
         length--;
+        return current;
     }
     public void peek(){
         System.out.println(stack.get(length-1));
