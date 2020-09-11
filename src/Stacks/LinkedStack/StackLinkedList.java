@@ -64,6 +64,7 @@ public class StackLinkedList {
         stack.pop();
         stack.pop();
 
+
         System.out.println(stack.isEmpty());
 
     }
