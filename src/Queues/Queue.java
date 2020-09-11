@@ -10,7 +10,7 @@ public class Queue {
         last=first;
         length++;
     }
-    public void push(String value){
+    public void enqueue(String value){
         QueueNode node = new QueueNode(value);
         //current lasts next as new node
         last.setNext(node);
@@ -18,7 +18,7 @@ public class Queue {
         last=node;
         length++;
     }
-    public void pop(){
+    public void dequeue(){
         if(length<1){
             System.out.println("stack underflow");
             return;
