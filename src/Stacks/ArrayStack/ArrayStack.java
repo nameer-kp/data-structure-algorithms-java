@@ -32,6 +32,7 @@ public class ArrayStack {
         return current;
     }
     public void peek(){
+        if(length<1){ System.out.println("no element");return;}
         System.out.println(stack.get(length-1));
     }
     public boolean isEmpty(){

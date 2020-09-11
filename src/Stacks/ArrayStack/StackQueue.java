@@ -32,8 +32,13 @@ public class StackQueue {
         queue.enqueue("4000");
         queue.peek();
         queue.dequeue();
+        queue.enqueue("end");
         queue.peek();
         queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        queue.peek();
     }
 
 }
