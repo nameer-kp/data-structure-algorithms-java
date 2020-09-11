@@ -2,28 +2,27 @@ package Stacks.ArrayStack;
 
 public class StackQueue {
     private ArrayStack stack;
-    private ArrayStack reverseStack;
+    private ArrayStack auxStack;
     private String first;
     public StackQueue(String value){
         stack=new ArrayStack(value);
+        auxStack = new ArrayStack();
     }
     public void enqueue(String value){
-        stack.push(value);
-    }
-    public void reversing(){
-        reverseStack = new ArrayStack();
-        while (!stack.isEmpty()){
-
-            //reverseStack contains elements of stack in reverse order
-            reverseStack.push(stack.pop());
+            if (stack.isEmpty())
+                stack.push(value);
+            while (!stack.isEmpty())
+                auxStack.push(stack.pop());
+            stack.push(value);
+            while (!auxStack.isEmpty())
+                stack.push(auxStack.pop());
         }
 
-    }
     public void dequeue(){
-        reverseStack.pop();
+        stack.pop();
     }
     public void peek(){
-        reverseStack.peek();
+        stack.peek();
     }
 
     public static void main(String[] args) {
@@ -31,7 +30,6 @@ public class StackQueue {
         queue.enqueue("2000");
         queue.enqueue("3000");
         queue.enqueue("4000");
-        queue.reversing();
         queue.peek();
         queue.dequeue();
         queue.peek();
