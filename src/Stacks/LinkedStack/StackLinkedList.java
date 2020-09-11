@@ -1,4 +1,4 @@
-package Stacks;
+package Stacks.LinkedStack;
 
 public class StackLinkedList {
     @Override
