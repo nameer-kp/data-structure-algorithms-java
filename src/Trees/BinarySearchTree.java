@@ -77,39 +77,40 @@ public class BinarySearchTree {
                 //right path
                 if (current.getValue() < value) {
 
-                    BinaryNode temp = current.getRight();//temp is used reference node before deleting node
-                    if (temp.getValue() == value) {//checking value of current node
+                    BinaryNode afterCurrent = current.getRight();//afterCurrent is used reference node after current ....afternode is the node that to be deleted
+                    if (afterCurrent.getValue() == value) {//checking value of current node
                         //checking if its a leaf or not
-                        if (temp.getLeft() == null && temp.getRight() == null) {
-                            System.out.println("item deleted :" + temp.getValue());
+                        if (afterCurrent.getLeft() == null && afterCurrent.getRight() == null) {
+                            System.out.println("item deleted :" + afterCurrent.getValue());
                             current.setRight(null);
                         }
-                            else if(temp.getLeft() == null ^ temp.getRight() == null){
-                            System.out.println("item deleted :" + temp.getValue());
-                            if (temp.getLeft()!=null)
-                                current.setRight(temp.getLeft());
+                            else if(afterCurrent.getLeft() == null ^ afterCurrent.getRight() == null){//this becomes true only when 1 of the statement is true,ie..only one child
+                            System.out.println("item deleted :" + afterCurrent.getValue());
+                            if (afterCurrent.getLeft()!=null)//checking it has left node
+                                current.setRight(afterCurrent.getLeft());//setting right node as afternode's left node
+
                             else
-                                current.setRight(temp.getRight());
+                                current.setRight(afterCurrent.getRight());//setting right node as afternode's right node
 
                     //TODO:: deletion for nodes having 1 child and 2 children
                         }
                     }
                         current = current.getRight();
                 }else {//left path
-                    BinaryNode temp = current.getLeft();//temp is used reference node before deleting node
-                    if (temp.getValue() == value) {//checking value of current node
+                    BinaryNode afterCurrent = current.getLeft();//afterCurrent is used reference node after current .....afternode is the node that to be deleted
+                    if (afterCurrent.getValue() == value) {//checking value of current node
                         //checking if its a leaf or not
-                        if (temp.getLeft() == null && temp.getRight() == null) {
-                            System.out.println("item deleted :" + temp.getValue());
-                            current.setLeft(null);
+                        if (afterCurrent.getLeft() == null && afterCurrent.getRight() == null) {
+                            System.out.println("item deleted :" + afterCurrent.getValue());
+                            current.setLeft(null); //setting left node as null
                         }
-                        else if(temp.getLeft() == null ^ temp.getRight() == null){
-                            System.out.println("item deleted :" + temp.getValue());
-                            if (temp.getLeft()!=null)
-                            {current.setLeft(temp.getLeft());return;}
+                        else if(afterCurrent.getLeft() == null ^ afterCurrent.getRight() == null){//this becomes true only when 1 of the statement is true,ie..only one child
+                            System.out.println("item deleted :" + afterCurrent.getValue());
+                            if (afterCurrent.getLeft()!=null)//checking it has left node
+                            {current.setLeft(afterCurrent.getLeft());return; }//setting left node as afternode's left node
 
                             else
-                            {current.setLeft(temp.getRight());return;}
+                            {current.setLeft(afterCurrent.getRight());return;}//setting left node as afternode's right node
 
                             //TODO:: deletion for nodes having 2 children
                         }
