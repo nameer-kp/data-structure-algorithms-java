@@ -83,6 +83,14 @@ public class BinarySearchTree {
                         if (temp.getLeft() == null && temp.getRight() == null) {
                             System.out.println("item deleted :" + temp.getValue());
                             current.setRight(null);
+                        }
+                            else if(temp.getLeft() == null ^ temp.getRight() == null){
+                            System.out.println("item deleted :" + temp.getValue());
+                            if (temp.getLeft()!=null)
+                                current.setRight(temp.getLeft());
+                            else
+                                current.setRight(temp.getRight());
+
                     //TODO:: deletion for nodes having 1 child and 2 children
                         }
                     }
@@ -94,6 +102,16 @@ public class BinarySearchTree {
                         if (temp.getLeft() == null && temp.getRight() == null) {
                             System.out.println("item deleted :" + temp.getValue());
                             current.setLeft(null);
+                        }
+                        else if(temp.getLeft() == null ^ temp.getRight() == null){
+                            System.out.println("item deleted :" + temp.getValue());
+                            if (temp.getLeft()!=null)
+                            {current.setLeft(temp.getLeft());return;}
+
+                            else
+                            {current.setLeft(temp.getRight());return;}
+
+                            //TODO:: deletion for nodes having 2 children
                         }
                     }
                         current = current.getLeft();
@@ -118,8 +136,6 @@ public class BinarySearchTree {
         System.out.println(tree);
         tree.lookup(4);
         tree.remove(1);
-        tree.remove(6);
-        tree.remove(15);
         tree.remove(4);
         System.out.println(tree);
     }
