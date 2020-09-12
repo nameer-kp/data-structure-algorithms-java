@@ -55,13 +55,13 @@ public class BinarySearchTree {
             depth++;
             //right path
             if(current.getValue()<value){
-                if (current.getValue()==value){
+                if (current.getValue()==value){//checking value of current node
                     System.out.println("element found at depth :"+depth);
                 }
                 current=current.getRight();
             }
-            else {
-                if (current.getValue()==value){
+            else {//left path
+                if (current.getValue()==value){ //checking value of current node
                     System.out.println("element found at depth :"+depth);
                 }
                 current=current.getLeft();
@@ -70,6 +70,37 @@ public class BinarySearchTree {
 
 
         }
+
+        public void remove(int value) {
+            BinaryNode current = root;
+            while (current != null) {
+                //right path
+                if (current.getValue() < value) {
+
+                    BinaryNode temp = current.getRight();//temp is used reference node before deleting node
+                    if (temp.getValue() == value) {//checking value of current node
+                        //checking if its a leaf or not
+                        if (temp.getLeft() == null && temp.getRight() == null) {
+                            System.out.println("item deleted :" + temp.getValue());
+                            current.setRight(null);
+                    //TODO:: deletion for nodes having 1 child and 2 children
+                        }
+                    }
+                        current = current.getRight();
+                }else {//left path
+                    BinaryNode temp = current.getLeft();//temp is used reference node before deleting node
+                    if (temp.getValue() == value) {//checking value of current node
+                        //checking if its a leaf or not
+                        if (temp.getLeft() == null && temp.getRight() == null) {
+                            System.out.println("item deleted :" + temp.getValue());
+                            current.setLeft(null);
+                        }
+                    }
+                        current = current.getLeft();
+                }
+            }
+        }
+
 
 
 
@@ -86,5 +117,10 @@ public class BinarySearchTree {
         tree.insert(1);
         System.out.println(tree);
         tree.lookup(4);
+        tree.remove(1);
+        tree.remove(6);
+        tree.remove(15);
+        tree.remove(4);
+        System.out.println(tree);
     }
 }
