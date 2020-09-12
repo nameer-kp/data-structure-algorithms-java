@@ -42,7 +42,35 @@ public class BinarySearchTree {
                 }
 
             }
+
         }
+        public void lookup(int value){
+        int depth = 0; //this depth counts the level at which lookup element is found
+        BinaryNode current=root;
+        if(root.getValue()==value){
+            System.out.println("value found at root");
+            return;
+        }
+        while (current!=null){
+            depth++;
+            //right path
+            if(current.getValue()<value){
+                if (current.getValue()==value){
+                    System.out.println("element found at depth :"+depth);
+                }
+                current=current.getRight();
+            }
+            else {
+                if (current.getValue()==value){
+                    System.out.println("element found at depth :"+depth);
+                }
+                current=current.getLeft();
+            }
+        }
+
+
+        }
+
 
 
 
@@ -57,5 +85,6 @@ public class BinarySearchTree {
         tree.insert(15);
         tree.insert(1);
         System.out.println(tree);
+        tree.lookup(4);
     }
 }
