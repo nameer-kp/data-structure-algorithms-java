@@ -72,51 +72,95 @@ public class BinarySearchTree {
         }
 
         public void remove(int value) {
+            BinaryNode parent = null;
             BinaryNode current = root;
             while (current != null) {
-                //right path
-                if (current.getValue() < value) {
-
-                    BinaryNode afterCurrent = current.getRight();//afterCurrent is used reference node after current ....afternode is the node that to be deleted
-                    if (afterCurrent.getValue() == value) {//checking value of current node
-                        //checking if its a leaf or not
-                        if (afterCurrent.getLeft() == null && afterCurrent.getRight() == null) {
-                            System.out.println("item deleted :" + afterCurrent.getValue());
-                            current.setRight(null);
-                        }
-                            else if(afterCurrent.getLeft() == null ^ afterCurrent.getRight() == null){//this becomes true only when 1 of the statement is true,ie..only one child
-                            System.out.println("item deleted :" + afterCurrent.getValue());
-                            if (afterCurrent.getLeft()!=null)//checking it has left node
-                                current.setRight(afterCurrent.getLeft());//setting right node as afternode's left node
-
-                            else
-                                current.setRight(afterCurrent.getRight());//setting right node as afternode's right node
-
-                    //TODO:: deletion for nodes having 1 child and 2 children
-                        }
-                    }
-                        current = current.getRight();
-                }else {//left path
-                    BinaryNode afterCurrent = current.getLeft();//afterCurrent is used reference node after current .....afternode is the node that to be deleted
-                    if (afterCurrent.getValue() == value) {//checking value of current node
-                        //checking if its a leaf or not
-                        if (afterCurrent.getLeft() == null && afterCurrent.getRight() == null) {
-                            System.out.println("item deleted :" + afterCurrent.getValue());
-                            current.setLeft(null); //setting left node as null
-                        }
-                        else if(afterCurrent.getLeft() == null ^ afterCurrent.getRight() == null){//this becomes true only when 1 of the statement is true,ie..only one child
-                            System.out.println("item deleted :" + afterCurrent.getValue());
-                            if (afterCurrent.getLeft()!=null)//checking it has left node
-                            {current.setLeft(afterCurrent.getLeft());return; }//setting left node as afternode's left node
-
-                            else
-                            {current.setLeft(afterCurrent.getRight());return;}//setting left node as afternode's right node
-
-                            //TODO:: deletion for nodes having 2 children
-                        }
-                    }
-                        current = current.getLeft();
+                if (value<current.getValue()){
+                    parent=current;
+                    current=current.getLeft();
                 }
+                else if (value>current.getValue()){
+                    parent=current;
+                    current=current.getRight();
+                }
+                else if (current.getValue()==value){
+                    if(current.getRight()==null){ //Option 1 -only left child
+                        if(parent==null){
+                            this.root=current.getLeft();
+                        }
+                        if (current.getValue()<parent.getValue()){   ///checking if the current node lies on left or right of parent  and swapping them accordingly
+                            parent.setLeft(current.getLeft());
+                        }
+                        else if(current.getValue()>parent.getValue()){
+                            parent.setRight(current.getLeft());
+                        }
+                        break;
+                    }
+                    else if(current.getLeft()==null){ //Option 1 -only right child
+                        if(parent==null){
+                            this.root=current.getLeft();
+                        }
+                        if (current.getValue()<parent.getValue()){   ///checking if the current node lies on left or right of parent  and swapping them accordingly
+                            parent.setLeft(current.getLeft());
+                        }
+                        else if(current.getValue()>parent.getValue()){
+                            parent.setRight(current.getLeft());
+                        }
+                        break;
+                    }
+                    else if (current.getLeft()==null&&current.getRight()==null){ // option 2 --leaf node
+                        if(parent==null){
+                            this.root=null;
+                        }
+                        if (current.getValue()<parent.getValue()){   ///checking if the current node lies on left or right of parent  and swapping them accordingly
+                            parent.setLeft(null);
+                        }
+                        else if(current.getValue()>parent.getValue()){
+                            parent.setRight(null);
+
+                    }
+                        break;
+
+                }
+                    else {
+                        BinaryNode replacementNode =current.getRight();
+                        BinaryNode replacementNodeParent = null;
+                        while(replacementNode.getLeft()!=null){
+                            replacementNodeParent=replacementNode;
+                            replacementNode=replacementNode.getLeft();
+                        }
+                        if (replacementNodeParent==null) { //replacement node as no left node
+                            if (current.getValue() < parent.getValue()) {   ///checking if the current node lies on left or right of parent  and swapping them accordingly
+                                parent.setLeft(replacementNode);
+                            } else if (current.getValue() > parent.getValue()) {
+                                parent.setRight(replacementNode);
+
+                            }
+                            break;
+                        }
+                            if(replacementNode.getRight()!=null){ //replace node as right child
+                                replacementNodeParent.setLeft(replacementNode.getRight());
+                                if (current.getValue() < parent.getValue()) {   ///checking if the current node lies on left or right of parent  and swapping them accordingly
+                                    parent.getLeft().setValue(replacementNode.getValue());
+                                } else if (current.getValue() > parent.getValue()) {
+                                    parent.getRight().setValue(replacementNode.getValue());
+
+                                }
+                                break;
+                            }
+                            else { //repalcement node has children
+                                replacementNodeParent.setLeft(null);
+                                if (current.getValue() < parent.getValue()) {   ///checking if the current node lies on left or right of parent  and swapping them accordingly
+                                    parent.getLeft().setValue(replacementNode.getValue());
+                                } else if (current.getValue() > parent.getValue()) {
+                                    parent.getRight().setValue(replacementNode.getValue());
+
+                                }
+ //TODO test all cases
+                            }
+                        }
+                    }
+
             }
         }
 
@@ -134,10 +178,12 @@ public class BinarySearchTree {
         tree.insert(170);
         tree.insert(15);
         tree.insert(1);
+        tree.insert(190);
+        tree.insert(100);
+        tree.insert(110);
         System.out.println(tree);
         tree.lookup(4);
-        tree.remove(1);
-        tree.remove(4);
+        tree.remove(20);
         System.out.println(tree);
     }
 }
