@@ -15,11 +15,11 @@ public class Factorial {
 
         return product;
     }
-
     public static void main(String[] args) {
+
         double time=System.nanoTime();
-        System.out.println(factorialWithRecursion(5));
         System.out.println("time taken in Recursion :"+(System.nanoTime()-time));
+        System.out.println(factorialWithRecursion(5));
         System.out.println(factorialWithIteration(5));
         System.out.println("time taken in iteration :"+(System.nanoTime()-time));
 
