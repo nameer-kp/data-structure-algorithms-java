@@ -1,5 +1,7 @@
 package Algortithms.Sorting;
 
+import java.util.ArrayList;
+
 public class SelectionSort {
     static void selectionSort(int [] array){
         int small;
