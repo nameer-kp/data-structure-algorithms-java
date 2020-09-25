@@ -25,7 +25,7 @@ public class MergeSort {
         int r = 0;//right array index pointer
         int l = 0;//left array index pointer
         while (l < left.size() && r < right.size()) { //loop untill every element is traversed
-            if (left.get(l) > right.get(r)) {
+            if (left.get(l) >= right.get(r)) {
                 sorted.add(right.get(r)); //adding r th element on right to sorted list
                 r++;
             } else {
