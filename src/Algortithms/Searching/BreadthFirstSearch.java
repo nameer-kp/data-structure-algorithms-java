@@ -30,6 +30,23 @@ public class BreadthFirstSearch {
         }
         System.out.println(list);
     }
+    public static List<Integer> bredthFirstSearchRecursive(Queue<BinaryNode> queue, List<Integer> list){
+
+        if(queue.size()==0){
+            return list;
+        }
+        BinaryNode element =queue.remove();
+        list.add(element.getValue());
+        if (element.getLeft() != null) {   //if the current node has left node add that to the queue
+            queue.add(element.getLeft());
+        }
+        if (element.getRight() != null) { // if the current node has right node add that to the queue
+            queue.add(element.getRight());
+        }
+        return bredthFirstSearchRecursive(queue,list);
+
+
+    }
 
     public static void main(String[] args) {
         BinarySearchTree tree = new BinarySearchTree();
@@ -42,6 +59,9 @@ public class BreadthFirstSearch {
         tree.insert(170);
         tree.insert(15);
         breadthFirstSearch(tree);
+        Queue<BinaryNode> queue =new LinkedList<>();
+        queue.add(tree.getRoot());
+        System.out.println(bredthFirstSearchRecursive(queue, new ArrayList<>()));
 
     }
 }
