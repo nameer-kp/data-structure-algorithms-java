@@ -69,7 +69,15 @@ public class BinarySearchTree {
 
         }
 
-        public void remove(int value) {
+    public BinaryNode getRoot() {
+        return root;
+    }
+
+    public void setRoot(BinaryNode root) {
+        this.root = root;
+    }
+
+    public void remove(int value) {
             BinaryNode parent = null;
             BinaryNode current = root;
             while (current != null) {
